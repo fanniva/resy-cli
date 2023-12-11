@@ -19,6 +19,7 @@ type surveyVenue struct {
 type surveyInputs struct {
 	DryRun           bool
 	Venue            surveyVenue
+	VenueID          string  // New field for specifying venue ID
 	SlotTime         string
 	PartySize        string
 	ReservationDate  string
@@ -62,6 +63,13 @@ func suggestVenues(toComplete string) []string {
 }
 
 var questions = []*survey.Question{
+	{
+		Name: "useVenueID",
+		Prompt: &survey.Confirm{
+			Message: "Do you want to specify the venue ID directly?",
+			Default: false,
+		},
+	},
 	{
 		Name: "venue",
 		Prompt: &survey.Input{
@@ -117,7 +125,21 @@ func surveyDetails() (*surveyInputs, error) {
 	if err != nil {
 		return nil, err
 	}
-
+	
+	if answers.UseVenueID {
+		// If the user wants to specify the venue ID, ask for it directly
+		err = survey.AskOne(&survey.Input{Message: "Venue ID:"}, &answers.VenueID)
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		// If the user doesn't want to specify the venue ID, use the venue selection logic
+		err = survey.Ask(venueQuestions, &answers.Venue)
+		if err != nil {
+			return nil, err
+		}
+	}
+	
 	bookingDateTime, err := getBookingDateTime(&answers)
 	if err != nil {
 		return nil, err
