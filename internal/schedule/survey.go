@@ -64,7 +64,7 @@ func suggestVenues(toComplete string) []string {
 
 var questions = []*survey.Question{
 	{
-		Name: "useVenueID",
+		Name: "UseVenueID",
 		Prompt: &survey.Confirm{
 			Message: "Do you want to specify the venue ID directly?",
 			Default: false,
