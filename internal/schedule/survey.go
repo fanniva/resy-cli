@@ -117,7 +117,17 @@ var questions = []*survey.Question{
 		Validate: survey.Required,
 	},
 }
-
+var venueQuestions = []*survey.Question{
+	{
+		Name:   "venue",
+		Prompt: &survey.Input{Message: "Venue:"},
+		Validate: survey.ComposeValidators(
+			survey.Required,
+			surveyHelpers.VenueValidator,
+		),
+	},
+	// Other venue-related questions...
+}
 func surveyDetails() (*surveyInputs, error) {
 	answers := surveyInputs{}
 
