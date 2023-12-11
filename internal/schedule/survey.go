@@ -64,13 +64,6 @@ func suggestVenues(toComplete string) []string {
 
 var questions = []*survey.Question{
 	{
-		Name: "UseVenueID",
-		Prompt: &survey.Confirm{
-			Message: "Do you want to specify the venue ID directly?",
-			Default: false,
-		},
-	},
-	{
 		Name: "venue",
 		Prompt: &survey.Input{
 			Message: "Venue:",
@@ -116,18 +109,15 @@ var questions = []*survey.Question{
 			Help:    "Dry runs will not actually attempt to book your reservation."},
 		Validate: survey.Required,
 	},
-}
-var venueQuestions = []*survey.Question{
 	{
-		Name:   "venue",
-		Prompt: &survey.Input{Message: "Venue:"},
-		Validate: survey.ComposeValidators(
-			survey.Required,
-			surveyHelpers.VenueValidator,
-		),
+		Name: "UseVenueID",
+		Prompt: &survey.Confirm{
+			Message: "Do you want to specify the venue ID directly?",
+			Default: false,
+		},
 	},
-	// Other venue-related questions...
 }
+
 func surveyDetails() (*surveyInputs, error) {
 	answers := surveyInputs{}
 
@@ -142,14 +132,7 @@ func surveyDetails() (*surveyInputs, error) {
 		if err != nil {
 			return nil, err
 		}
-	} else {
-		// If the user doesn't want to specify the venue ID, use the venue selection logic
-		err = survey.Ask(venueQuestions, &answers.Venue)
-		if err != nil {
-			return nil, err
-		}
 	}
-	
 	bookingDateTime, err := getBookingDateTime(&answers)
 	if err != nil {
 		return nil, err
