@@ -36,7 +36,7 @@ type searchResponse struct {
 func searchVenues(query string) (*[]surveyVenue, error) {
 	searchRequest := searchRequest{
 		Query:   query,
-		PerPage: 300,
+		PerPage: 600,
 		Types:   []string{"venue"},
 	}
 	body, err := json.Marshal(searchRequest)
