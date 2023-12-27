@@ -19,7 +19,6 @@ type surveyVenue struct {
 type surveyInputs struct {
 	DryRun           bool
 	Venue            surveyVenue
-	VenueID          string  // New field for specifying venue ID
 	SlotTime         string
 	PartySize        string
 	ReservationDate  string
@@ -109,13 +108,6 @@ var questions = []*survey.Question{
 			Help:    "Dry runs will not actually attempt to book your reservation."},
 		Validate: survey.Required,
 	},
-	{
-		Name: "UseVenueID",
-		Prompt: &survey.Confirm{
-			Message: "Do you want to specify the venue ID directly?",
-			Default: false,
-		},
-	},
 }
 
 func surveyDetails() (*surveyInputs, error) {
@@ -125,14 +117,7 @@ func surveyDetails() (*surveyInputs, error) {
 	if err != nil {
 		return nil, err
 	}
-	
-	if answers.UseVenueID {
-		// If the user wants to specify the venue ID, ask for it directly
-		err = survey.AskOne(&survey.Input{Message: "Venue ID:"}, &answers.VenueID)
-		if err != nil {
-			return nil, err
-		}
-	}
+
 	bookingDateTime, err := getBookingDateTime(&answers)
 	if err != nil {
 		return nil, err
