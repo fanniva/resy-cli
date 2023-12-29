@@ -85,7 +85,7 @@ func VenueValidator(val interface{}) error {
 	}
 
 	arr := strings.Split(str, " | ")
-	if len(arr) < 3 {
+	if len(arr) < 5 {
 		return errors.New("please tab to search and select a venue")
 	}
 	return nil
