@@ -29,8 +29,8 @@ func template(method string, contentType string) func(string, *Req) ([]byte, int
 	return func(url string, p *Req) ([]byte, int, error) {
 		req, _ := http.NewRequest(method, url, bytes.NewReader(p.Body))
 		req.Header.Add("user-agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36")
-		req.Header.Add("origin", "https://widgets.resy.com")
-		req.Header.Add("referrer", "https://widgets.resy.com/")
+		req.Header.Add("Origin", "https://widgets.resy.com")
+		req.Header.Add("Referer", "https://widgets.resy.com/")
 		client := &http.Client{Timeout: 3 * time.Second}
 		authHeaders := getAuthHeaders()
 		if contentType != "" {
