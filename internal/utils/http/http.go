@@ -34,7 +34,7 @@ func template(method string, contentType string) func(string, *Req) ([]byte, int
 		client := &http.Client{Timeout: 3 * time.Second}
 		authHeaders := getAuthHeaders()
 		if contentType != "" {
-			req.Header.Add("content-type", contentType)
+			req.Header.Add("Content-Type", contentType)
 		}
 		for key, val := range *authHeaders {
 			req.Header.Add(key, val[0])
