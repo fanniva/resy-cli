@@ -43,13 +43,27 @@ func DateValidator(val interface{}) error {
 	return nil
 }
 
-func TimeValidator(val interface{}) error {
+func TimeValidatorL(val interface{}) error {
 	str, ok := val.(string)
 	if !ok {
 		return errors.New("input must be a string")
 	}
 
 	_, err := date.ParseTimeL(str)
+
+	if err != nil {
+		return errors.New("input must be a valid time (HH:MM)")
+	}
+
+	return nil
+}
+func TimeValidatorS(val interface{}) error {
+	str, ok := val.(string)
+	if !ok {
+		return errors.New("input must be a string")
+	}
+
+	_, err := date.ParseTimeS(str)
 
 	if err != nil {
 		return errors.New("input must be a valid time (HH:MM)")
@@ -68,7 +82,7 @@ func TimesValidator(val interface{}) error {
 	arr := strings.Split(in, "\n")
 
 	for _, v := range arr {
-		err := TimeValidator(v)
+		err := TimeValidatorS(v)
 		if err != nil {
 			return err
 		}
