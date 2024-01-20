@@ -52,7 +52,7 @@ func TimeValidatorL(val interface{}) error {
 	_, err := date.ParseTimeL(str)
 
 	if err != nil {
-		return errors.New("input must be a valid time (HH:MM)")
+		return errors.New("input must be a valid time (HH:MM:SS)")
 	}
 
 	return nil
