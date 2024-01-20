@@ -16,7 +16,7 @@ func ParseDate(s string) (*time.Time, error) {
 }
 
 func ParseTime(s string) (*time.Time, error) {
-	dateTime, err := time.ParseInLocation("15:04", s, time.Local)
+	dateTime, err := time.ParseInLocation("15:04:05", s, time.Local)
 	if err != nil {
 		return nil, err
 	}
