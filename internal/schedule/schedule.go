@@ -25,7 +25,7 @@ func getBookingDateTime(inputs *surveyInputs) (*time.Time, error) {
 		return nil, err
 	}
 
-	slotTime, err := date.ParseTime(inputs.SlotTime)
+	slotTime, err := date.ParseTimeL(inputs.SlotTime)
 	if err != nil {
 		return nil, err
 	}
