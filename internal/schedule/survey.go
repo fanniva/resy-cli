@@ -98,7 +98,7 @@ var questions = []*survey.Question{
 		Prompt: &survey.Input{
 			Message: "What time do slots open? (HH:MM)",
 		},
-		Validate: survey.ComposeValidators(survey.Required, surveyHelpers.TimeValidator),
+		Validate: survey.ComposeValidators(survey.Required, surveyHelpers.TimeValidatorL),
 	},
 	{
 		Name: "dryRun",
