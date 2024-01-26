@@ -31,7 +31,7 @@ func template(method string, contentType string) func(string, *Req) ([]byte, int
 		req.Header.Add("user-agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36")
 		req.Header.Add("Origin", "https://widgets.resy.com")
 		req.Header.Add("Referer", "https://widgets.resy.com/")
-		client := &http.Client{Timeout: 1 * time.Second}
+		client := &http.Client{Timeout: 1.5 * time.Second}
 		authHeaders := getAuthHeaders()
 		if contentType != "" {
 			req.Header.Add("Content-Type", contentType)
