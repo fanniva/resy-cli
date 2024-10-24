@@ -3,7 +3,7 @@ package schedule
 import (
 	"fmt"
 	"strings"
-
+	"sort"
 	"github.com/AlecAivazis/survey/v2"
 	"github.com/fanniva/resy-cli/internal/utils/surveyHelpers"
 )
