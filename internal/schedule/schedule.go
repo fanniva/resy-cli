@@ -43,7 +43,7 @@ func schedule(inputs *surveyInputs) error {
 	_times := strings.Split(inputs.ReservationTimes, "\n")
 	times := make([]string, len(_times))
 	for i, time := range _times {
-		t, _ := date.ParseTime(time)
+		t, _ := date.ParseTimeL(time)
 		times[i] = date.ToTimeString(t)
 	}
 
