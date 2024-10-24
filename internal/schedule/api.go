@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"strconv"
-
+	"sort"
 	"github.com/fanniva/resy-cli/internal/utils/http"
 )
 
