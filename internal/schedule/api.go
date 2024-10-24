@@ -68,5 +68,10 @@ func searchVenues(query string) (*[]surveyVenue, error) {
 		ret = append(ret, v)
 	}
 
-	return &ret, nil
+	// Sorting the venues alphabetically by name
+    	sort.Slice(ret, func(i, j int) bool {
+        	return ret[i].Name < ret[j].Name
+    	})
+
+    	return &ret, nil
 }
