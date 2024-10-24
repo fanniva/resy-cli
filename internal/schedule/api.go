@@ -67,17 +67,11 @@ func searchVenues(query string) (*[]surveyVenue, error) {
 		}
 		ret = append(ret, v)
 	}
-	for _, v := range ret {
-  		fmt.Println(v.Name) // Print names before sorting
-	}
+	
 	// Sorting the venues alphabetically by name
     	sort.Slice(ret, func(i, j int) bool {
         	return ret[i].Name < ret[j].Name
     	})
-	// Print names after sorting
-    	fmt.Println("After Sorting:")
- 	for _, v := range ret {
-        	fmt.Println(v.Name)
-    	}
+	
     	return &ret, nil
 }
