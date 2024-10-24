@@ -57,6 +57,8 @@ func suggestVenues(toComplete string) []string {
 	for _, v := range *venues {
 		ret = append(ret, v.ToString())
 	}
+	// Sorting the venue names alphabetically
+    	sort.Strings(ret)
 
 	return ret
 }
